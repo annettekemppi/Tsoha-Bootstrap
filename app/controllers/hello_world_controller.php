@@ -1,16 +1,13 @@
 <?php
 
-  class HelloWorldController extends BaseController{
+class HelloWorldController extends BaseController {
 
-    public static function index(){
-      echo 'Tämä on etusivu!';
+    public static function index() {
+        echo 'Tï¿½mï¿½ on etusivu!';
     }
 
-    public static function sandbox(){
-      // Testaa koodiasi tÃ¤Ã¤llÃ¤
-      echo 'Hello World!';
+    public static function sandbox() {
+        View::make('helloworld.html');
     }
-  
-    
-    
-  }
+
+}
