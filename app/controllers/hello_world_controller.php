@@ -3,7 +3,7 @@
 class HelloWorldController extends BaseController {
 
     public static function index() {
-        echo 'T�m� on etusivu!';
+        echo 'Tämä on etusivu!';
     }
 
     public static function sandbox() {
