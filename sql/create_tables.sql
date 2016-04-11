@@ -7,7 +7,7 @@ CREATE TABLE Kayttaja (
 
 CREATE TABLE Rotu (
   id SERIAL PRIMARY KEY,
-  rotu_id INTEGER REFERENCES Race(id), -- Viiteavain Player-tauluun
+  rotu_id INTEGER REFERENCES Race(id), -- Viiteavain Kayttaja-tauluun
   name varchar(50) NOT NULL,
   status boolean DEFAULT FALSE,
   description varchar(400),
