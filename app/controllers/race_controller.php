@@ -49,7 +49,7 @@ class RaceController extends BaseController {
         $attributes = array(
         'id' => $id,
         'name' => $params['name'],
-        'played' => $params['played']
+        'saved' => $params['saved']
         'description' => $params['description']
         );
 
