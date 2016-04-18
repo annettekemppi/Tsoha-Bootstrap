@@ -35,3 +35,15 @@
   $routes->get('/race/new', function(){
   RaceController::create();
   });
+  
+  $routes->get('/race/:id/edit', function($id){
+  GameController::edit($id);
+  });
+
+  $routes->post('/race/:id/edit', function($id){
+  RaceController::update($id);
+  });
+
+  $routes->post('/race/:id/destroy', function($id){
+  RaceController::destroy($id);
+  });
