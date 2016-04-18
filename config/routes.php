@@ -19,3 +19,7 @@
   $routes->get('/login', function() {
   HelloWorldController::login();
   });
+  
+  $routes->get('/race', function(){
+  RaceController::index();
+});
