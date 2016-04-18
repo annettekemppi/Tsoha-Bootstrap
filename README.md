@@ -4,6 +4,8 @@ Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](https://annettek.users.cs.helsinki.fi/tsohameininki)
 * [Linkki dokumentaatiooni](https://www.github.com/annettekemppi/Tsoha-Bootstrap/tree/master/doc/Dokumentaatio.pdf)
+* Käyttäjätunnus: bokseri
+* Salasana: canisfamiliaris
 
 ## Työn aihe
 
