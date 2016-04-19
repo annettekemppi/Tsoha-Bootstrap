@@ -9,7 +9,7 @@
 class RaceController extends BaseController {
 
     public static function index() {
-        $races = Game::all();
+        $races = Rotu::all();
         View::make('race/index.html', array('races' => $races));
     }
 
@@ -26,8 +26,8 @@ class RaceController extends BaseController {
         $race->save();
         Redirect::to('/race/' . $race->id, array('message' => 'Rotu on lisätty kirjastoosi!'));
 
-        $game = new Game($attributes);
-        $errors = $game->errors();
+        $race = new Rotu($attributes);
+        $errors = $race->errors();
 
         if (count($errors) == 0) {
             $race->save();

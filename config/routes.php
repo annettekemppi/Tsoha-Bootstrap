@@ -41,7 +41,7 @@
   });
   
   $routes->get('/race/:id/edit', function($id){
-  GameController::edit($id);
+  RaceController::edit($id);
   });
 
   $routes->post('/race/:id/edit', function($id){
