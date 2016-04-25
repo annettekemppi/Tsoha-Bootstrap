@@ -36,30 +36,6 @@ class Kayttaja extends BaseModel {
         }
 
         return $users;
-    }
-
-    public static function hae($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Rotu WHERE id = :id LIMIT 1');
-        $query->execute(array('id' => $id));
-        $row = $query->fetch();
-
-        if ($row) {
-            $race = new Rotu(array(
-                'id' => $row['id'],
-                'rotu_id' => $row['rotu_id'],
-                'name' => $row['name'],
-                'status' => $row['status'],
-                'description' => $row['description'],
-                'published' => $row['published'],
-                'publisher' => $row['publisher'],
-                'added' => $row['added']
-            ));
-
-            return $race;
-        }
-
-        return null;
-    }
-    
+    }    
 
 }
