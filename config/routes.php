@@ -1,20 +1,20 @@
 <?php
 
-  $routes->get('/', function() {
-    HelloWorldController::index();
-  });
+ // $routes->get('/', function() {
+ //   HelloWorldController::index();
+ // });
 
-  $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
-  });
+ // $routes->get('/hiekkalaatikko', function() {
+ //   HelloWorldController::sandbox();
+ // });
   
-  $routes->get('/race', function() {
-  HelloWorldController::race_list();
-  });
+ // $routes->get('/race', function() {
+ // HelloWorldController::race_list();
+ // });
   
-  $routes->get('/race/1', function() {
-  HelloWorldController::race_show();
-  });
+ // $routes->get('/race/1', function() {
+ // HelloWorldController::race_show();
+ // });
 
   $routes->get('/login', function() {
   UserController::login();
