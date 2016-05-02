@@ -51,3 +51,19 @@
   $routes->post('/race/:id/destroy', function($id){
   RaceController::destroy($id);
   });
+
+  $routes->get('/race', 'check_logged_in', function(){
+  RaceController::index();
+  });
+
+  $routes->get('/race/new', 'check_logged_in', function(){
+  RaceController::create();
+  });
+
+  $routes->get('/race/:id', 'check_logged_in', function($id){
+  RaceController::show($id);
+  });
+  
+  $routes->post('/logout', function(){
+  UserController::logout();
+  });
