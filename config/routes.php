@@ -1,20 +1,5 @@
 <?php
 
- // $routes->get('/', function() {
- //   HelloWorldController::index();
- // });
-
- // $routes->get('/hiekkalaatikko', function() {
- //   HelloWorldController::sandbox();
- // });
-  
- // $routes->get('/race', function() {
- // HelloWorldController::race_list();
- // });
-  
- // $routes->get('/race/1', function() {
- // HelloWorldController::race_show();
- // });
 
   $routes->get('/login', function() {
   UserController::login();
@@ -66,4 +51,32 @@
   
   $routes->post('/logout', function(){
   UserController::logout();
+  });
+  
+  $routes->get('/racegroup', function(){
+  RacegroupController::index();
+  });
+
+  $routes->get('/racegroup/:id', function($id){
+  RacegroupController::show($id);
+  });
+  
+  $routes->post('/racegroup', function(){
+  RacegroupController::store();
+  });
+
+  $routes->get('/racegroup/new', function(){
+  RacegroupController::create();
+  });
+  
+  $routes->get('/racegroup/:id/edit', function($id){
+  RacegroupController::edit($id);
+  });
+
+  $routes->post('/racegroup/:id/edit', function($id){
+  RacegroupController::update($id);
+  });
+
+  $routes->post('/racegroup/:id/destroy', function($id){
+  RacegroupController::destroy($id);
   });

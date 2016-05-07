@@ -72,40 +72,4 @@ class RaceController extends BaseController {
 
         Redirect::to('/race', array('message' => 'Rotu on poistettu onnistuneesti!'));
     }
-    
-    public static function index(){
-    self::check_logged_in();
-    //...
-  }
-
-  public static function show($id){
-    self::check_logged_in();
-    //...
-  }
-
-  public static function edit($id){
-    self::check_logged_in();
-    //...
-  }
-
-  public static function update($id){
-    self::check_logged_in();
-    //...
-  }
-
-  public static function create(){
-    self::check_logged_in();
-    //...
-  }
-
-  public static function store(){
-    self::check_logged_in();
-    //...
-  }
-
-  public static function destroy($id){
-    self::check_logged_in();
-    //...
-  }
-
 }
