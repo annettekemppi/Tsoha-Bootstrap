@@ -1,5 +1,7 @@
 # Tietokantasovelluksen esittelysivu
 
+Asenna sovellus kopioimalla sen tiedostot palvelimen nettiin näkyvään hakemistoon (esim. usersin htdocs-hakemisto). Aseta sen jälkeen tietokannan yhteystiedot oikeaksi tiedostoon libs/config.php. Voit kopioida asetustiedoston mallin tiedostosta libs/config.php.dist. Työ löytyy osoitteesta https://annettek.users.cs.helsinki.fi/tsohameininki. 
+
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](https://annettek.users.cs.helsinki.fi/tsohameininki)
