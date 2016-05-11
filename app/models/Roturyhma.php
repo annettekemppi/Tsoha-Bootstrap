@@ -64,7 +64,7 @@ class Roturyhma extends BaseModel {
         return $errors;
     }
 
-    public static function hae($id) {
+    public static function findById($id) {
         $query = DB::connection()->prepare('SELECT * FROM Roturyhma WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();

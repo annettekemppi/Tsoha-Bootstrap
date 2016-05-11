@@ -9,12 +9,12 @@
 class Rotu extends BaseModel {
 
     // Attribuutit
-    public $id, $rotu_id, $name, $status, $description, $published, $publisher, $added;
+    public $id, $name, $status, $description, $published, $country, $added;
 
     // Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_published', 'validate_publisher', 'validate_description');
+        $this->validators = array('validate_name', 'validate_published', 'validate_country', 'validate_description');
     }
 
     public static function all() {
@@ -25,28 +25,26 @@ class Rotu extends BaseModel {
 
         $rows = $query->fetchAll();
         $races = array();
-
+        Kint::dump($rows);
         foreach ($rows as $row) {
 
             $races[] = new Rotu(array(
                 'id' => $row['id'],
-                'rotu_id' => $row['rotu_id'],
                 'name' => $row['name'],
                 'status' => $row['status'],
                 'description' => $row['description'],
                 'published' => $row['published'],
-                'publisher' => $row['publisher'],
+                'country' => $row['country'],
                 'added' => $row['added']
             ));
         }
-
+        Kint::dump($races);
         return $races;
     }
 
     public function save() {
-
-        $query = DB::connection()->prepare('INSERT INTO Rotu (name, rotu_id, publisher, description) VALUES (:name, :rotu_id, :publisher, :description) RETURNING id');
-        $query->execute(array('name' => $this->name, 'id' => $this->rotu_id, 'publisher' => $this->publisher, 'description' => $this->description));
+        $query = DB::connection()->prepare('INSERT INTO Rotu (id, name, status, description, published, country, added) VALUES (:id, :name, :status, :description, :published, :country, :added) RETURNING id');
+        $query->execute(array('id' => $this->id, 'name' => $this->name, 'status' => $this->status, 'description' => $this->description, 'published' => $this->published, 'country' => $this->country, 'added' => $this->added));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
@@ -63,7 +61,7 @@ class Rotu extends BaseModel {
         return $errors;
     }
 
-    public static function hae($id) {
+    public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Rotu WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
@@ -71,12 +69,11 @@ class Rotu extends BaseModel {
         if ($row) {
             $race = new Rotu(array(
                 'id' => $row['id'],
-                'rotu_id' => $row['rotu_id'],
                 'name' => $row['name'],
                 'status' => $row['status'],
                 'description' => $row['description'],
                 'published' => $row['published'],
-                'publisher' => $row['publisher'],
+                'country' => $row['country'],
                 'added' => $row['added']
             ));
 

@@ -19,4 +19,10 @@ class BaseController {
         }
     }
 
+    public static function check_admin() {
+        if (!isset($_SESSION['user'])) {
+            Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+        }
+    }
+    
 }

@@ -17,10 +17,13 @@ class RaceController extends BaseController {
         $params = $_POST;
 
         $race = new Rotu(array(
+            'id' => $params['id'],
             'name' => $params['name'],
             'description' => $params['description'],
             'status' => $params['status'],
             'published' => $params['published'],
+            'country' => $params['country'],
+            'added' => $params['added']
         ));
 
         $race->save();

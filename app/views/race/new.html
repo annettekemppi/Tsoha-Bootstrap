@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
-
 {% extends "base.html" %}
 {% block content %}
   <h1>Lisää rotu kirjastoon</h1>
@@ -54,5 +37,22 @@ and open the template in the editor.
       <button type="submit" class="btn btn-primary">Lisää</button>
     </div>
   </form>
+ 
+  {% for race in races %}
+        <tr>
+          <td><a href="{{base_path}}/race/{{race.id}}">{{race.name}}</td>
+          <td>{{race.published}}</td>
+          <td>{{race.publisher}}</td>
+          <td>
+              {% if race.exists %}
+                <label class="label label-success">Rekisteröity
+              {% else %}
+                <label class="label label-danger">Ei rekisteröity
+              {% endif %}
+          </td>
+          <td>{{race.added}}</td>
+          <td><a class="btn btn-default btn-sm" href="{{base_path}}/race/{{race.id}}/edit">Muokkaa</a></td>
+        </tr>
+      {% endfor %}
+  
 {% endblock %}
-
