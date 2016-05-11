@@ -9,12 +9,12 @@
 class Roturyhma extends BaseModel {
 
     // Attribuutit
-    public $name, $id, $description, $published, $publisher, $added;
+    public $id, $rotu_id, $name, $count, $class;
 
     // Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_id', 'validate_description', 'validate_published', 'validate_publisher', 'validate_added');
+        $this->validators = array('validate_id', 'validate_rotu_id', 'validate_name', 'validate_count', 'validate_class');
     }
 
     public static function all() {
@@ -30,13 +30,11 @@ class Roturyhma extends BaseModel {
         foreach ($rows as $row) {
 
             $racegroups[] = new Roturyhma(array(
-                'name' => $row['name'],
                 'id' => $row['id'],
                 'rotu_id' => $row['rotu_id'],
-                'description' => $row['description'],
-                'published' => $row['published'],
-                'publisher' => $row['publisher'],
-                'added' => $row['added']
+                'name' => $row['name'],
+                'count' => $row['count'],
+                'class' => $row['class']
             ));
         }
 

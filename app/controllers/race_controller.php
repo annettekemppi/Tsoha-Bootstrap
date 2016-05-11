@@ -52,8 +52,10 @@ class RaceController extends BaseController {
         $attributes = array(
         'id' => $id,
         'name' => $params['name'],
+        'status' => $row['status'],
         'saved' => $params['saved'],
         'description' => $params['description'],
+        'country' => $row['country'],
         );
 
         $race = new Rotu($attributes);

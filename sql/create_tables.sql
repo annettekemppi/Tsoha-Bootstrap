@@ -19,7 +19,7 @@ CREATE TABLE Roturyhma (
     id SERIAL PRIMARY KEY,
     rotu_id INTEGER REFERENCES Rotu(id), -- Viiteavain Rotu-tauluun
     name varchar(50) NOT NULL,
-    maara int DEFAULT NULL,
-    luokitus varchar(50) NOT NULL
+    count int DEFAULT NULL,
+    class varchar(50) NOT NULL
 );
 -- Lisää CREATE TABLE lauseet tähän tiedostoon

@@ -32,8 +32,8 @@ class UserController extends BaseController {
     }
 
     public static function index() {
-        self::check_logged_in();
-        //...
+        $users = Kayttaja::all();
+        View::make('user/index.html', array('users' => $users));
     }
 
     public static function show($id) {
@@ -42,13 +42,30 @@ class UserController extends BaseController {
     }
 
     public static function edit($id) {
-        self::check_logged_in();
-        //...
+        $user = Kayttaja::find($id);
+        View::make('user/edit.html', array('attributes' => $user));
     }
 
     public static function update($id) {
-        self::check_logged_in();
-        //...
+        $params = $_POST;
+
+        $attributes = array(
+        'id' => $id,
+        'name' => $params['name'],
+        'password' => $params['password'],
+        'admin' => $params['admin']
+        );
+
+        $user = new Kayttaja($attributes);
+        $errors = $user->errors();
+
+        if (count($errors) > 0) {
+            View::make('user/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+        } else {
+            $user->update();
+
+            Redirect::to('/user/' . $user->id, array('message' => 'Käyttäjän tietoja on muokattu onnistuneesti!'));
+        }
     }
 
     public static function create() {
@@ -62,8 +79,11 @@ class UserController extends BaseController {
     }
 
     public static function destroy($id) {
-        self::check_logged_in();
-        //...
-    }
+        $user = new Kayttaja(array('id' => $id));
+        
+        $user->destroy();
 
+        Redirect::to('/user', array('message' => 'Käyttäjä on poistettu onnistuneesti!'));
+    }
 }
+

@@ -3,5 +3,5 @@ INSERT INTO Kayttaja (id, name, password, admin) VALUES ('1', 'Mealy', 'papumuhe
 -- Rotu-taulun testidata
 INSERT INTO Rotu (id, name, status, description, published, country, added) VALUES ('1', 'Alaskanmalamuutti', 'Rekisteröity', 'Raskaiden kuormien vetokoira', '2011-11-11', 'USA', NOW());
 -- Roturyhma-taulun testidata
-INSERT INTO Roturyhma (name, id, description) VALUES ('Terrierit', '1', 'FCI 3');
+INSERT INTO Roturyhma (id, rotu_id, name, count, class) VALUES ('1', '3', 'Terrierit', '5', 'FCI 3');
 -- Lisää INSERT INTO lauseet tähän tiedostoon
