@@ -26,7 +26,6 @@ class Rotu extends BaseModel {
         $rows = $query->fetchAll();
         $races = array();
 
-
         foreach ($rows as $row) {
 
             $races[] = new Rotu(array(
