@@ -17,7 +17,7 @@ CREATE TABLE Rotu (
 
 CREATE TABLE Roturyhma (
     id SERIAL PRIMARY KEY,
-    rotu_id INTEGER REFERENCES Rotu(id), -- Viiteavain Roturyhma-tauluun
+    rotu_id INTEGER REFERENCES Rotu(id), -- Viiteavain Rotu-tauluun
     name varchar(50) NOT NULL,
     maara int DEFAULT NULL,
     luokitus varchar(50) NOT NULL

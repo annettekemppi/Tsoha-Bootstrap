@@ -14,7 +14,7 @@ class Roturyhma extends BaseModel {
     // Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_published', 'validate_publisher', 'validate_description');
+        $this->validators = array('validate_name', 'validate_id', 'validate_description', 'validate_published', 'validate_publisher', 'validate_added');
     }
 
     public static function all() {
@@ -30,10 +30,9 @@ class Roturyhma extends BaseModel {
         foreach ($rows as $row) {
 
             $racegroups[] = new Roturyhma(array(
+                'name' => $row['name'],
                 'id' => $row['id'],
                 'rotu_id' => $row['rotu_id'],
-                'name' => $row['name'],
-                'status' => $row['status'],
                 'description' => $row['description'],
                 'published' => $row['published'],
                 'publisher' => $row['publisher'],
@@ -64,7 +63,7 @@ class Roturyhma extends BaseModel {
         return $errors;
     }
 
-    public static function findById($id) {
+    public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Roturyhma WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();

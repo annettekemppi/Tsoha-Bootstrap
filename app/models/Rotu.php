@@ -14,7 +14,7 @@ class Rotu extends BaseModel {
     // Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_published', 'validate_country', 'validate_description');
+        $this->validators = array('validate_id', 'validate_name', 'validate_status', 'validate_description', 'validate_published', 'validate_country', 'validate_added');
     }
 
     public static function all() {
@@ -82,5 +82,6 @@ class Rotu extends BaseModel {
 
         return null;
     }
+    
 
 }

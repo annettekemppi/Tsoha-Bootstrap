@@ -15,6 +15,11 @@
   $routes->get('/race', function(){
   RaceController::index();
   });
+  
+  $routes->post('/race', function(){
+  RaceController::store();
+  });
+
 //
 //  $routes->get('/race/:id', function($id){
 //  RaceController::show($id);
