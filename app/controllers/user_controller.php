@@ -74,8 +74,28 @@ class UserController extends BaseController {
     }
 
     public static function store() {
-        self::check_logged_in();
-        //...
+        $params = $_POST;
+
+        $user = new Kayttaja(array(
+            'id' => $params['id'],
+            'name' => $params['name'],
+            'password' => $params['password'],
+            'admin' => $params['admin'],
+        ));
+
+        $user->save();
+        Redirect::to('/user/' . $users->id, array('message' => 'Käyttäjä on lisätty!'));
+
+        $user = new Kayttaja($attributes);
+        $errors = $user->errors();
+
+        if (count($errors) == 0) {
+            $user->save();
+
+            Redirect::to('/user/' . $user->id, array('message' => 'Käyttäjä on lisätty!'));
+        } else {
+            View::make('user/new.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
     }
 
     public static function destroy($id) {

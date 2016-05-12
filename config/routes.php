@@ -1,24 +1,33 @@
 <?php
 
-  $routes->get('/', function() {
+$routes->get('/', function() {
     View::make('index.html');
-  });
+});
 
-  $routes->get('/login', function() {
-  UserController::login();
-  });
-  
+$routes->get('/login', function() {
+    UserController::login();
+});
+
 //  $routes->post('/login', function(){
 //  UserController::handle_login();
 //  });
 //  
-  $routes->get('/race', function(){
-  RaceController::index();
-  });
-  
-  $routes->post('/race', function(){
-  RaceController::store();
-  });
+$routes->get('/race', function() {
+    RaceController::index();
+});
+
+$routes->post('/race', function() {
+    RaceController::store();
+});
+
+$routes->get('/race/edit', function($id) {
+    // Rodun muokkauslomakkeen esittäminen
+    RaceController::edit($id);
+});
+$routes->post('/race/edit', function($id) {
+    // Rodun muokkaaminen
+    RaceController::update($id);
+});
 
 //
 //  $routes->get('/race/:id', function($id){
