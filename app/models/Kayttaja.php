@@ -14,8 +14,7 @@ class Kayttaja extends BaseModel {
     // Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
-//        $this->validators = array('validate_id', 'validate_name', 'validate_password', 'validate_admin');
-        $this->validators = array('validate_name');
+        $this->validators = array('validate_id', 'validate_name', 'validate_password', 'validate_admin');
     }
 
     public static function all() {
@@ -49,17 +48,6 @@ class Kayttaja extends BaseModel {
         $this->id = $row['id'];
     }
 
-    public function validate_name() {
-        $errors = array();
-        if ($this->name == '' || $this->name == null) {
-            $errors[] = 'Nimi ei saa olla tyhjä!';
-        }
-        if (strlen($this->name) < 3) {
-            $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
-        }
-
-        return $errors;
-    }
 
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');

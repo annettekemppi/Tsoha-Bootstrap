@@ -16,6 +16,10 @@ $routes->post('/logout', function() {
     UserController::logout();
 });
 
+$routes->post('/:id/destroy', function($id) {
+    UserController::destroy($id);
+});
+
 $routes->get('/race', function() {
     RaceController::index();
 });
@@ -65,9 +69,9 @@ $routes->post('/race/edit', function($id) {
 //  RaceController::update($id);
 //  });
 //
-  $routes->post('/race/:id/destroy', function($id){
-  RaceController::destroy($id);
-  });
+$routes->post('/race/:id/destroy', function($id) {
+    RaceController::destroy($id);
+});
 //
 //  $routes->get('/race', 'check_logged_in', function(){
 //  RaceController::index();

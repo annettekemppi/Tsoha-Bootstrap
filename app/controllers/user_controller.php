@@ -98,11 +98,8 @@ class UserController extends BaseController {
     }
 
     public static function destroy($id) {
-        $user = new Kayttaja(array('id' => $id));
-        
-        $user->destroy();
-
-        Redirect::to('/user', array('message' => 'Käyttäjä on poistettu onnistuneesti!'));
+        Kayttaja::destroy($id);
+        Redirect::to('/race', array('message' => 'Käyttäjä on poistettu onnistuneesti!'));
     }
 }
 
