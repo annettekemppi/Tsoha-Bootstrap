@@ -20,7 +20,7 @@ class RaceController extends BaseController {
             'id' => $params['id'],
             'name' => $params['name'],
             'description' => $params['description'],
-            'status' => $params['status'],
+            'registered' => $params['registered'],
             'published' => $params['published'],
             'country' => $params['country'],
             'added' => $params['added']
@@ -40,10 +40,14 @@ class RaceController extends BaseController {
             View::make('race/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
+    public static function show($id) {
+        $race = Rotu::find($id);
+        View::make('race/show.html', array('race' => $race));
+    }
 
     public static function edit($id) {
         $race = Rotu::find($id);
-        View::make('race/edit.html', array('attributes' => $race));
+        View::make('race/edit.html', array('race' => $race));
     }
 
     public static function update($id) {
@@ -52,7 +56,7 @@ class RaceController extends BaseController {
         $attributes = array(
         'id' => $id,
         'name' => $params['name'],
-        'status' => $row['status'],
+        'registered' => $row['registered'],
         'saved' => $params['saved'],
         'description' => $params['description'],
         'country' => $row['country'],

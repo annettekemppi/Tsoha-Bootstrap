@@ -9,12 +9,12 @@
 class Rotu extends BaseModel {
 
     // Attribuutit
-    public $id, $name, $status, $description, $published, $country, $added;
+    public $id, $name, $registered, $description, $published, $country, $added;
 
     // Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_id', 'validate_name', 'validate_status', 'validate_description', 'validate_published', 'validate_country', 'validate_added');
+        $this->validators = array('validate_id', 'validate_name', 'validate_registered', 'validate_description', 'validate_published', 'validate_country', 'validate_added');
     }
 
     public static function all() {
@@ -31,7 +31,7 @@ class Rotu extends BaseModel {
             $races[] = new Rotu(array(
                 'id' => $row['id'],
                 'name' => $row['name'],
-                'status' => $row['status'],
+                'registered' => $row['registered'],
                 'description' => $row['description'],
                 'published' => $row['published'],
                 'country' => $row['country'],
@@ -43,8 +43,8 @@ class Rotu extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Rotu (id, name, status, description, published, country, added) VALUES (:id, :name, :status, :description, :published, :country, :added) RETURNING id');
-        $query->execute(array('id' => $this->id, 'name' => $this->name, 'status' => $this->status, 'description' => $this->description, 'published' => $this->published, 'country' => $this->country, 'added' => $this->added));
+        $query = DB::connection()->prepare('INSERT INTO Rotu (id, name, registered, description, published, country, added) VALUES (:id, :name, :registered, :description, :published, :country, :added) RETURNING id');
+        $query->execute(array('id' => $this->id, 'name' => $this->name, 'registered' => $this->registered, 'description' => $this->description, 'published' => $this->published, 'country' => $this->country, 'added' => $this->added));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
@@ -70,7 +70,7 @@ class Rotu extends BaseModel {
             $race = new Rotu(array(
                 'id' => $row['id'],
                 'name' => $row['name'],
-                'status' => $row['status'],
+                'registered' => $row['registered'],
                 'description' => $row['description'],
                 'published' => $row['published'],
                 'country' => $row['country'],

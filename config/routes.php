@@ -20,7 +20,12 @@ $routes->post('/race', function() {
     RaceController::store();
 });
 
-$routes->get('/race/edit', function($id) {
+$routes->get('/race/:id', function($id) {
+    // Rodun muokkauslomakkeen esittäminen
+    RaceController::show($id);
+});
+
+$routes->get('/race/:id/edit', function($id) {
     // Rodun muokkauslomakkeen esittäminen
     RaceController::edit($id);
 });
