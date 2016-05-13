@@ -8,10 +8,14 @@ $routes->get('/login', function() {
     UserController::login();
 });
 
-//  $routes->post('/login', function(){
-//  UserController::handle_login();
-//  });
-//  
+$routes->post('/login', function() {
+    UserController::handle_login();
+});
+
+$routes->post('/logout', function() {
+    UserController::logout();
+});
+
 $routes->get('/race', function() {
     RaceController::index();
 });
@@ -19,6 +23,11 @@ $routes->get('/race', function() {
 $routes->post('/race', function() {
     RaceController::store();
 });
+
+$routes->post('/race/edit', function() {
+    RaceController::update();
+});
+
 
 $routes->get('/race/:id', function($id) {
     // Rodun muokkauslomakkeen esittäminen
@@ -29,6 +38,7 @@ $routes->get('/race/:id/edit', function($id) {
     // Rodun muokkauslomakkeen esittäminen
     RaceController::edit($id);
 });
+
 $routes->post('/race/edit', function($id) {
     // Rodun muokkaaminen
     RaceController::update($id);
@@ -55,9 +65,9 @@ $routes->post('/race/edit', function($id) {
 //  RaceController::update($id);
 //  });
 //
-//  $routes->post('/race/:id/destroy', function($id){
-//  RaceController::destroy($id);
-//  });
+  $routes->post('/race/:id/destroy', function($id){
+  RaceController::destroy($id);
+  });
 //
 //  $routes->get('/race', 'check_logged_in', function(){
 //  RaceController::index();
@@ -71,9 +81,7 @@ $routes->post('/race/edit', function($id) {
 //  RaceController::show($id);
 //  });
 //  
-//  $routes->post('/logout', function(){
-//  UserController::logout();
-//  });
+
 //  
 //  $routes->get('/racegroup', function(){
 //  RacegroupController::index();

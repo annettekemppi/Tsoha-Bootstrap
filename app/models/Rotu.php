@@ -14,7 +14,8 @@ class Rotu extends BaseModel {
     // Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_id', 'validate_name', 'validate_registered', 'validate_description', 'validate_published', 'validate_country', 'validate_added');
+//        $this->validators = array('validate_id', 'validate_name', 'validate_registered', 'validate_description', 'validate_published', 'validate_country');
+        $this->validators = array('validate_name');
     }
 
     public static function all() {
@@ -35,7 +36,6 @@ class Rotu extends BaseModel {
                 'description' => $row['description'],
                 'published' => $row['published'],
                 'country' => $row['country'],
-                'added' => $row['added']
             ));
         }
         Kint::dump($races);
@@ -43,24 +43,38 @@ class Rotu extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Rotu (id, name, registered, description, published, country, added) VALUES (:id, :name, :registered, :description, :published, :country, :added) RETURNING id');
-        $query->execute(array('id' => $this->id, 'name' => $this->name, 'registered' => $this->registered, 'description' => $this->description, 'published' => $this->published, 'country' => $this->country, 'added' => $this->added));
+        $query = DB::connection()->prepare('INSERT INTO Rotu (id, name, registered, '
+                . 'description, published, country) VALUES (:id, :name, '
+                . ':registered, :description, :published, :country) '
+                . 'RETURNING id');
+        
+        $query->execute(array(
+            'id' => $this->id,
+            'name' => $this->name,
+            'registered' => $this->registered,
+            'description' => $this->description,
+            'published' => $this->published,
+            'country' => $this->country
+        ));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
 
-    public function validate_name() {
-        $errors = array();
-        if ($this->name == '' || $this->name == null) {
-            $errors[] = 'Nimi ei saa olla tyhjä!';
-        }
-        if (strlen($this->name) < 3) {
-            $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
-        }
-
-        return $errors;
+        public function update() {
+        $query = DB::connection()->prepare('UPDATE Rotu SET name = :name, registered = :registered, '
+                . 'description = :description, published = :published, country = :country  '
+                . 'WHERE id = :id');
+        
+        $query->execute(array(
+            'id' => $this->id,
+            'name' => $this->name,
+            'registered' => $this->registered,
+            'description' => $this->description,
+            'published' => $this->published,
+            'country' => $this->country
+        ));
     }
-
+    
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Rotu WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
@@ -73,8 +87,7 @@ class Rotu extends BaseModel {
                 'registered' => $row['registered'],
                 'description' => $row['description'],
                 'published' => $row['published'],
-                'country' => $row['country'],
-                'added' => $row['added']
+                'country' => $row['country']
             ));
 
             return $race;
@@ -84,4 +97,8 @@ class Rotu extends BaseModel {
     }
     
 
+    public static function destroy($id) {
+        $query = DB::connection()->prepare('DELETE FROM Rotu WHERE id = :id');
+        $query->execute(array('id' => $id));
+    }
 }

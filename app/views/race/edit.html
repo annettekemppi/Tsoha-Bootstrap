@@ -1,26 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Muokkaa tietokantaa</h1>
-  <!-- Painikkeet tähän -->
-  <p>
-    <a href="#" class="btn btn-success">Lisää rotu</a>
-  </p>
-  <p>
-    <a href="#" class="btn btn-success">Lisää roturyhmä</a>
-  </p>
-  <p>
-    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
-  </p>
-  <!-- Tiedot tulee listana tähän -->
-  <ul>
-    <li><strong>Rotu:</strong> Australiankelpie</li>
-    <li><strong>Numero:</strong> 293</li>
-    <li><strong>Alkuperämaa:</strong><li>
-    <li><strong>Status:</strong> <label class="label label-danger">Ei rekisteröity</label></li>
-    <li><strong>Lisäyspäivä:</strong> 5.4.2016</li>
-  </ul>
-  <!-- Kuvaus tulee tähän -->
-  <p>
-    FCI:n roturyhmä 1 sisältää lammas- ja karjakoirat (paitsi sveitsinpaimenkoirat). Se jakautuu kahteen alaryhmään. Rodun jälkeen suluissa on sen numero sekä alkuperämaa.
-  </p>
+<!-- Painikkeet tähän -->
+<form method="post" action="{{base_path}}/race/{{race.id}}/destroy" style="display: inline-block;">
+  <button type="submit" class="btn btn-danger">Poista rotu</button>
+</form>
+{% if race != false %}
+<!-- Tiedot tulee listana tähän -->
+<form method="post" action="{{base_path}}/race/edit">
+    <div class="form-group">
+        <label>Rotu</label>
+        <input type="text" name="name" class="form-control" value="{{race.name}}">
+    </div>
+
+    <div class="form-group">
+        <label>Numero</label>
+        <input type="text" name="id" class="form-control" value="{{race.id}}">
+    </div>
+    
+    <div class="form-group">
+        <label>Kuvaus:</label>
+        <textarea name="description" class="form-control" >{{race.description}} </textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Alkuperämaa:</label>
+        <input type="text" name="country" class="form-control" value="{{race.country}}">
+    </div>
+
+    <div class="form-group">
+        <label>Rekisteröity:</label>
+        <textarea name="registered" class="form-control"> {{race.registered}}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Lisäyspäivä:</label>
+        <textarea name="published" class="form-control"> {{race.published}}</textarea>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+
+{% else %}
+<p>
+    Rotua ei löytynyt!
+</p>
+{% endif %}
 {% endblock %}
