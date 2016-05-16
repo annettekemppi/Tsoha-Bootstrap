@@ -15,10 +15,9 @@ class UserController extends BaseController {
     public static function handle_login() {
         $params = $_POST;
 
-        $user = User::authenticate($params['username'], $params['password']);
-
+        $user = Kayttaja::authenticate($params['username'], $params['password']);
         if (!$user) {
-            View::make('user/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
+            View::make('user/login.html', array('errors' => array('Väärä käyttäjätunnus tai salasana!'), 'username' => $params['username']));
         } else {
             $_SESSION['user'] = $user->id;
 
@@ -99,11 +98,8 @@ class UserController extends BaseController {
     }
 
     public static function destroy($id) {
-        $user = new Kayttaja(array('id' => $id));
-        
-        $user->destroy();
-
-        Redirect::to('/user', array('message' => 'Käyttäjä on poistettu onnistuneesti!'));
+        Kayttaja::destroy($id);
+        Redirect::to('/race', array('message' => 'Käyttäjä on poistettu onnistuneesti!'));
     }
 }
 

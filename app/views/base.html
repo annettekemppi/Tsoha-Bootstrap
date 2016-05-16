@@ -58,6 +58,18 @@
             </div>
         </nav>
 
+        {% if message==true %}
+            
+            <p>{{message}}</p>
+        {% endif %}
+        
+        {% if errors==true %}
+            {% for error in errors %}
+            
+            <p>{{error}}</p>
+            {% endfor %}
+        {% endif %}
+        
         <div id="main-container">
             <!-- Dynaaminen sisältö tulee tähän -->
             {% block content %}{% endblock %}

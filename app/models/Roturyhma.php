@@ -49,18 +49,6 @@ class Roturyhma extends BaseModel {
         $this->id = $row['id'];
     }
 
-    public function validate_name() {
-        $errors = array();
-        if ($this->name == '' || $this->name == null) {
-            $errors[] = 'Nimi ei saa olla tyhjä!';
-        }
-        if (strlen($this->name) < 3) {
-            $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
-        }
-
-        return $errors;
-    }
-
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Roturyhma WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));

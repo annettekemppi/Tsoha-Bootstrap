@@ -8,16 +8,17 @@ CREATE TABLE Kayttaja (
 CREATE TABLE Rotu (
   id SERIAL PRIMARY KEY,
   name varchar(50) NOT NULL,
-  status boolean DEFAULT FALSE,
+  registered boolean DEFAULT FALSE,
   description varchar(400),
   published DATE,
-  country varchar(50),
+  country varchar(50) NOT NULL,
   added DATE
 );
 
 CREATE TABLE Roturyhma (
     id SERIAL PRIMARY KEY,
-    rotu_id INTEGER REFERENCES Rotu(id), -- Viiteavain Rotu-tauluun
+    kayttaja_id INTEGER REFERENCES Kayttaja(id) ON DELETE CASCADE,
+    rotu_id INTEGER REFERENCES Rotu(id) ON DELETE CASCADE, -- Viiteavain Rotu-tauluun
     name varchar(50) NOT NULL,
     count int DEFAULT NULL,
     class varchar(50) NOT NULL
