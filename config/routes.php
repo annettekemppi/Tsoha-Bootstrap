@@ -20,6 +20,14 @@ $routes->post('/:id/destroy', function($id) {
     UserController::destroy($id);
 });
 
+$routes->get('/race/new', function() {
+    RaceController::create();
+});
+
+$routes->post('/race/:id/destroy', function($id) {
+    RaceController::destroy($id);
+});
+
 $routes->get('/race', function() {
     RaceController::index();
 });
@@ -48,18 +56,10 @@ $routes->post('/race/edit', function($id) {
     RaceController::update($id);
 });
 
-//
-//  $routes->get('/race/:id', function($id){
-//  RaceController::show($id);
-//  });
-//  
 //  $routes->post('/race', function(){
 //  RaceController::store();
 //  });
 //
-//  $routes->get('/race/new', function(){
-//  RaceController::create();
-//  });
 //  
 //  $routes->get('/race/:id/edit', function($id){
 //  RaceController::edit($id);
@@ -69,9 +69,6 @@ $routes->post('/race/edit', function($id) {
 //  RaceController::update($id);
 //  });
 //
-$routes->post('/race/:id/destroy', function($id) {
-    RaceController::destroy($id);
-});
 //
 //  $routes->get('/race', 'check_logged_in', function(){
 //  RaceController::index();
