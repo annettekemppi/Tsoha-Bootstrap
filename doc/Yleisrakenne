@@ -1,0 +1,8 @@
+# Järjestelmän yleisrakenne
+
+Sovellus on toteutettu MVC-mallin mukaisesti. Mallin, kontrollerit ja näkymät on erikseen jaettu kansioihin, joista 
+näkymäkansiossa on vielä erikseen tauluille jaoteltu html-näkymät muokkaukselle, lisäämiselle, kirjautumiselle jne.
+
+Kaikki käytetyt mallit perivät BaseModelin toiminnallisuuden. Istunto tallennetaan Session-olioon, joka on HttpServletRequestin 
+olio. Makrot löytyvät views-kansion alta. Käytetyt apukirjastot on sijoitettu hakemistoon lib ja asetukset ovat 
+tiedostossa settings.php.
